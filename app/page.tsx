@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { searchTenis, getTenis, getTenisQuantity } from './_actions/getTenis';
+import { searchTenis, getTenis, getTenisQuantity, getOrSearchTenis } from './_actions/getTenis';
 import ProductCard from '@/components/product-card';
 import Link from 'next/link';
 import Search from '@/components/search';
@@ -12,27 +12,28 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [tenisQuantity, setTenisQuantity] = useState(0);
-
-  const getAllTenis = async () => {
-    setLoading(true);
-    const allTenis = await getTenis(page);
-    setTenis(allTenis);
-    setLoading(false);
-  };
+  const [searchTerm, setSearchTerm] = useState('');
 
   const getAllTenisQuantity = async () => {
+    console.log("getAllTenisQuantity function actived");
     const tenisQuantity = await getTenisQuantity();
     setTenisQuantity(tenisQuantity);
   }
 
-  const handleSearch = async (searchTerm: string) => {
+
+  const getAllTenis = async () => {
+    console.log("getAllTenis function actived");
     setLoading(true);
-    if (!searchTerm.trim()) {
-      getAllTenis();
-    } else {
-      const searchResults = await searchTenis(searchTerm);
-      setTenis(searchResults);
-    }
+    const allTenis = await getOrSearchTenis(page);
+    setTenis(allTenis);
+    setLoading(false);
+  };
+
+  const handleSearch = async (search: string) => {
+    setLoading(true);
+    setSearchTerm(search);
+    const searchResults = await getOrSearchTenis(page, search.trim());
+    setTenis(searchResults);
     setLoading(false);
   };
 
@@ -41,20 +42,22 @@ export default function Home() {
     if (nextPage > Math.ceil(tenisQuantity / 10)) return;
     setLoading(true);
     setPage(nextPage);
-    const nextTenis = await getTenis(nextPage);
+    const nextTenis = await getOrSearchTenis(nextPage, searchTerm.trim());
     setTenis(nextTenis);
     setLoading(false);
-  }
-  
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handlePreviousClick = async () => {
     const previousPage = page - 1;
     if (previousPage < 1) return;
     setLoading(true);
     setPage(previousPage);
-    const previousTenis = await getTenis(previousPage);
+    const previousTenis = await getOrSearchTenis(previousPage, searchTerm.trim());
     setTenis(previousTenis);
     setLoading(false);
-  }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     getAllTenis();
@@ -73,11 +76,11 @@ export default function Home() {
       </div>
       <div>
         <Pagination>
-          <PaginationContent>
-            <PaginationItem onClick={handlePreviousClick} >
+          <PaginationContent >
+            <PaginationItem className='cursor-pointer' onClick={handlePreviousClick} >
               <PaginationPrevious/>
             </PaginationItem>
-            <PaginationItem onClick={handleNextClick}>
+            <PaginationItem className='cursor-pointer' onClick={handleNextClick}>
               <PaginationNext/>
             </PaginationItem>
           </PaginationContent>
