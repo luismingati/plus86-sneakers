@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Tenis {
+  id           Int      @id @default(autoincrement())
+  marca        String
+  preco        Float
+  imagesUrl    String[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  categoria    String
+  nome         String
+  thumbnailUrl String
+}
