@@ -1,11 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { searchTenis, getTenis, getTenisQuantity, getOrSearchTenis } from './_actions/getTenis';
+import { getTenisQuantity, getOrSearchTenis } from './_actions/getTenis';
 import ProductCard from '@/components/product-card';
 import Link from 'next/link';
 import Search from '@/components/search';
 import { Tenis } from "@prisma/client";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 
 export default function Home() {
   const [tenis, setTenis] = useState<Tenis[]>([]);
@@ -25,6 +25,7 @@ export default function Home() {
     console.log("getAllTenis function actived");
     setLoading(true);
     const allTenis = await getOrSearchTenis(page);
+    getAllTenisQuantity();
     setTenis(allTenis);
     setLoading(false);
   };
@@ -32,7 +33,9 @@ export default function Home() {
   const handleSearch = async (search: string) => {
     setLoading(true);
     setSearchTerm(search);
-    const searchResults = await getOrSearchTenis(page, search.trim());
+    const searchResults = await getOrSearchTenis(1, search.trim());
+    setPage(1);
+    setTenisQuantity(await getTenisQuantity(search.trim()));
     setTenis(searchResults);
     setLoading(false);
   };
