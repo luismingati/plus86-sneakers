@@ -22,7 +22,7 @@ const ProductCard: React.FC<TenisCardProps> = ({tenis}: TenisCardProps) => {
             height={512}
             />
         </div>
-        <h2 className='text-lg mt-1 max-sm:truncate px-3'>{tenis.nome}</h2>
+        <h2 className='text-lg mt-1 px-3'>{tenis.nome}</h2>
         <p className='text-2xl font-bold px-3'>R${tenis.preco}</p>
       </CardContent>
       <CardFooter className='px-3 py-0 pb-3'>
