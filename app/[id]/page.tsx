@@ -10,6 +10,9 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { CircleCheck, CircleDollarSign } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { BuyNow } from '@/components/buy-now';
+import Link from 'next/link';
+
 
 export default function TenisPage({ params }: { params: { id: string } }) {
   const [tenis, setTenis] = useState<Tenis | null>()
@@ -58,13 +61,17 @@ export default function TenisPage({ params }: { params: { id: string } }) {
         <div className='flex flex-col mt-6 px-4'>
           <Separator className=' self-center' />
           <h1 className='text-2xl mt-4'>{tenis.nome}</h1>
-          <p className='text-xs text-gray-500 mt-1'>Tamanhos disponiveis do 34 ao 45</p>
-          <p className='mt-2'>Preço: <span className='font-bold text-xl text-primary'>R$ {((tenis.preco) + (tenis.preco * 0.1) + (25)).toFixed(2)}</span></p>
-          <p>Parcele em até 12x de <span className='font-bold text-base text-primary'>R$ {(((tenis.preco) + (tenis.preco * 0.1) + (25)) * (10/100)).toFixed(2)}</span></p>
-          <Button className='mt-4 flex gap-3'><CircleDollarSign /> Comprar agora</Button>
+          <p className='text-xs text-gray-500 mt-1'>Tamanhos disponiveis a verificar.</p>
+          <p className='my-2'>Preço: <span className='font-bold text-xl text-primar mb-4'>R$ {((tenis.preco) + (tenis.preco * 0.1) + (25)).toFixed(2)}</span></p>
+          <BuyNow tenisName={tenis.nome} />
           <div className='flex items-center mt-4 gap-2'>
             <p className='text-sm flex items-center gap-2'>Disponibilidade:</p>
             <Badge><CircleCheck size={18} className='mr-1'/> Em estoque</Badge>
+          </div>
+          <Separator className='my-5'/>
+          <div className='flex gap-2 items-center'>
+            <p className='text-sm'>Alguma dúvida?</p>
+            <Link href="/perguntas-frequentes"><button className='text-sm text-primary underline-offset-4 hover:underline max-lg:underline-offset-3 max-lg:underline'>Perguntas Frequentes</button></Link>
           </div>
         </div>
       </div>

@@ -20,7 +20,6 @@ export default function Home() {
     setTenisQuantity(tenisQuantity);
   }
 
-
   const getAllTenis = async () => {
     console.log("getAllTenis function actived");
     setLoading(true);
@@ -70,24 +69,33 @@ export default function Home() {
   return (
     <div className="px-4">
       <Search onSearch={handleSearch} isLoading={loading} />
-      <div className="mb-6 flex flex-1 flex-col gap-4 items-center md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {tenis.map((tenisItem) => (
-          <Link href={`/${tenisItem.id}`} key={tenisItem.id}> 
-            <ProductCard tenis={tenisItem} />
-          </Link>
-        ))}
-      </div>
-      <div>
-        <Pagination>
-          <PaginationContent >
-            <PaginationItem className='cursor-pointer' onClick={handlePreviousClick} >
-              <PaginationPrevious/>
-            </PaginationItem>
-            <PaginationItem className='cursor-pointer' onClick={handleNextClick}>
-              <PaginationNext/>
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+      {tenis.length > 0 ? (
+        <div>
+          <div className="mb-6 flex flex-1 flex-col gap-4 items-center md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {tenis.map((tenisItem) => (
+              <Link href={`/${tenisItem.id}`} key={tenisItem.id}> 
+                <ProductCard tenis={tenisItem} />
+              </Link>
+            ))}
+          </div>
+          <Pagination>
+            <PaginationContent >
+              <PaginationItem className='cursor-pointer' onClick={handlePreviousClick} >
+                <PaginationPrevious/>
+              </PaginationItem>
+              <PaginationItem className='cursor-pointer' onClick={handleNextClick}>
+                <PaginationNext/>
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+        ) : (
+          <div className='h-10 mt-10 mb-10 text-center'>
+            <p className='font-bold text-sm'>Nenhum tenis encontrado. Tente outro termo de pesquisa</p>
+          </div>
+        )}
+      <div>        
+        
       </div>
     </div>
   );

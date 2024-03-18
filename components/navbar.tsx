@@ -25,6 +25,11 @@ const Navbar: React.FC = () => {
               <SheetTitle>Menu</SheetTitle>
               <ModeToggle />
             </SheetHeader>
+            <div className='flex flex-col items-start'>
+              <Link href="/perguntas-frequentes" >
+                <Button variant="link" className='w-full'>Perguntas Frequentes</Button>
+              </Link>
+            </div>
           </SheetContent>
         </Sheet>
       </CardContent>
