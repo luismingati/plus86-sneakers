@@ -164,7 +164,7 @@ function ProfileForm({ className, tenisName }: { className?: string; tenisName: 
       </form>
       <div className="max-md:px-4 ">
         <Separator className="my-4" />
-        <a href={`https://wa.me//5581992673319?text=Olá, tenho%20interesse%20em%20comprar%20o%20tenis%20${tenisName}`}>
+        <a href={`https://wa.me//5581992293196?text=Olá, tenho%20interesse%20em%20comprar%20o%20tenis%20${tenisName}`}>
           <Button variant="whatsapp" className="w-full"><MessageCircle className="mr-2" size={20}/> WhatsApp</Button>
         </a>
       </div>
