@@ -1,13 +1,13 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { getTenisQuantity, getOrSearchTenis } from './_actions/getTenis';
 import ProductCard from '@/components/product-card';
 import Link from 'next/link';
 import Search from '@/components/search';
 import { Tenis } from "@prisma/client";
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { getOrSearchTenisByCategoria, getTenisQuantity, getTenisQuantityByCategoria } from '@/app/_actions/getTenis';
 
-export default function Home() {
+export default function Marca({ params }: { params: { categoria: string } }) {
   const [tenis, setTenis] = useState<Tenis[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -16,14 +16,15 @@ export default function Home() {
 
   const getAllTenisQuantity = async () => {
     console.log("getAllTenisQuantity function actived");
-    const tenisQuantity = await getTenisQuantity();
+    const tenisQuantity = await getTenisQuantityByCategoria(decodeURIComponent(params.categoria));
     setTenisQuantity(tenisQuantity);
   }
+  console.log(decodeURIComponent(params.categoria))
 
   const getAllTenis = async () => {
     console.log("getAllTenis function actived");
     setLoading(true);
-    const allTenis = await getOrSearchTenis(page);
+    const allTenis = await getOrSearchTenisByCategoria(page, decodeURIComponent(params.categoria));
     getAllTenisQuantity();
     setTenis(allTenis);
     setLoading(false);
@@ -32,9 +33,9 @@ export default function Home() {
   const handleSearch = async (search: string) => {
     setLoading(true);
     setSearchTerm(search);
-    const searchResults = await getOrSearchTenis(1, search.trim());
+    const searchResults = await getOrSearchTenisByCategoria(1, decodeURIComponent(params.categoria), search.trim());
     setPage(1);
-    setTenisQuantity(await getTenisQuantity(search.trim()));
+    setTenisQuantity(await getTenisQuantityByCategoria(decodeURIComponent(params.categoria), search.trim()));
     setTenis(searchResults);
     setLoading(false);
   };
@@ -44,7 +45,7 @@ export default function Home() {
     if (nextPage > Math.ceil(tenisQuantity / 10)) return;
     setLoading(true);
     setPage(nextPage);
-    const nextTenis = await getOrSearchTenis(nextPage, searchTerm.trim());
+    const nextTenis = await getOrSearchTenisByCategoria(nextPage, decodeURIComponent(params.categoria), searchTerm.trim());
     setTenis(nextTenis);
     setLoading(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,7 +56,7 @@ export default function Home() {
     if (previousPage < 1) return;
     setLoading(true);
     setPage(previousPage);
-    const previousTenis = await getOrSearchTenis(previousPage, searchTerm.trim());
+    const previousTenis = await getOrSearchTenisByCategoria(previousPage, decodeURIComponent(params.categoria), searchTerm.trim());
     setTenis(previousTenis);
     setLoading(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,7 +64,6 @@ export default function Home() {
 
   useEffect(() => {
     getAllTenis();
-    getAllTenisQuantity();
   }, []);
 
   return (
@@ -73,7 +73,7 @@ export default function Home() {
         <div>
           <div className="mb-6 flex flex-1 flex-col gap-4 items-center md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {tenis.map((tenisItem) => (
-              <Link href={`/details/${tenisItem.id}`} key={tenisItem.id}> 
+              <Link href={`/${tenisItem.id}`} key={tenisItem.id}> 
                 <ProductCard tenis={tenisItem} />
               </Link>
             ))}

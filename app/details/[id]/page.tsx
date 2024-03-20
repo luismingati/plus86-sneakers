@@ -2,7 +2,7 @@
 
 import { Tenis } from '@prisma/client';
 import React, { useEffect, useState } from 'react';
-import { getTenisById } from '../_actions/getTenis';
+import { getTenisById } from '../../_actions/getTenis';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Image from 'next/image';
 import { Separator } from '@/components/ui/separator';

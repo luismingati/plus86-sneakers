@@ -26,7 +26,6 @@ import { CircleDollarSign, LoaderCircle, MessageCircle, Send } from "lucide-reac
 import { Separator } from "./ui/separator"
 import { sendEmail } from "@/app/_actions/sendEmail"
 import { useToast } from "./ui/use-toast"
-import Link from "next/link"
 
 interface BuyNowProps {
   tenisName: string
@@ -89,14 +88,11 @@ function ProfileForm({ className, tenisName }: { className?: string; tenisName: 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formDataToSend = new FormData();
-    console.log("mahoe")
     Object.entries(formData).forEach(([key, value]) => {
       formDataToSend.append(key, value);
     });
 
     try {
-      console.log("mahoe")
-
       setIsLoading(true);
       await sendEmail(formDataToSend);
       toast({
@@ -104,8 +100,6 @@ function ProfileForm({ className, tenisName }: { className?: string; tenisName: 
         description: "Em breve um de nossos vendendores entrará em contato com você.",
       })
     } catch (error) {
-    console.log("deu ruim")
-
       toast({
         title: "Erro ao enviar pedido!",
         description: "Tente novamente mais tarde.",
@@ -131,9 +125,9 @@ function ProfileForm({ className, tenisName }: { className?: string; tenisName: 
 
   const handleChangeTelefone = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     let { value } = e.target;
-    value = value.replace(/\D/g, ""); // Remove todos os caracteres não-dígitos
-    value = value.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses em torno dos dois primeiros dígitos
-    value = value.replace(/(\d)(\d{4})$/, "$1-$2"); // Adiciona um hífen antes dos últimos 4 dígitos
+    value = value.replace(/\D/g, ""); 
+    value = value.replace(/^(\d{2})(\d)/g, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
     setFormData(prevState => ({
       ...prevState,
       telefone: value
