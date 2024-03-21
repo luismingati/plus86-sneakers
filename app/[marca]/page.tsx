@@ -72,7 +72,7 @@ export default function Marca({ params }: { params: { marca: string } }) {
         <div>
           <div className="mb-6 flex flex-1 flex-col gap-4 items-center md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {tenis.map((tenisItem) => (
-              <Link href={`/${tenisItem.id}`} key={tenisItem.id}> 
+              <Link href={`/details/${tenisItem.id}`} key={tenisItem.id}> 
                 <ProductCard tenis={tenisItem} />
               </Link>
             ))}

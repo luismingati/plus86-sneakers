@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui
 import { ModeToggle } from './mode-toggle';
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { Separator } from './ui/separator';
 
 const Navbar: React.FC = () => {
   return (
@@ -29,7 +30,7 @@ const Navbar: React.FC = () => {
             </SheetHeader>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className='w-full mt-4'>
+                <Button variant="outline" className='w-full mt-4 justify-start'>
                   Nike
                 </Button>
                 </DropdownMenuTrigger>
@@ -53,7 +54,7 @@ const Navbar: React.FC = () => {
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" className='w-full mt-4'>
+                <Button variant="outline" className='w-full mt-4 justify-start'>
                   Louis Vuitton
                 </Button>
                 </DropdownMenuTrigger>
@@ -66,8 +67,9 @@ const Navbar: React.FC = () => {
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
+            <Separator className='my-4 mt-8'/>
             <Link href="/perguntas-frequentes">
-              <Button variant="outline" className='w-full mt-4'>
+              <Button variant="link" className='w-full mt-4'>
                 Perguntas Frequentes
               </Button >
             </Link>
