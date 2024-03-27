@@ -50,6 +50,27 @@ const Navbar: React.FC = () => {
                 <Link href="/nike/Travis Scott x Nike">
                   <DropdownMenuItem>Nike x Travis Scott</DropdownMenuItem>
                 </Link>
+                <Link href="/nike/Air Force 1">
+                  <DropdownMenuItem>Air Force 1</DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className='w-full mt-4 justify-start'>
+                  Adidas
+                </Button>
+                </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <Link href="/Adidas">
+                    <DropdownMenuItem>Ver todos</DropdownMenuItem>
+                </Link>
+                <Link href="/adidas/Yeezy 350">
+                  <DropdownMenuItem>Yeezy 350</DropdownMenuItem>
+                </Link>
+                <Link href="/adidas/Campus">
+                  <DropdownMenuItem>Campus</DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
@@ -64,6 +85,33 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link href="/Louis Vuitton/LV trainer">
                   <DropdownMenuItem>LV Trainer</DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className='w-full mt-4 justify-start'>
+                  BAPE
+                </Button>
+                </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <Link href="/bape">
+                    <DropdownMenuItem>Ver todos</DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className='w-full mt-4 justify-start'>
+                  New Balance
+                </Button>
+                </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <Link href="/New Balance">
+                    <DropdownMenuItem>Ver todos</DropdownMenuItem>
+                </Link>
+                <Link href="/New Balance/New Balance 9060">
+                    <DropdownMenuItem>New Balance 9060</DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
