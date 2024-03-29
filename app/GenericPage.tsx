@@ -14,19 +14,11 @@ interface GenericLayoutProps {
 }
 
 export const GenericLayout: React.FC<GenericLayoutProps> = ({ fetchItemsFunc, fetchQuantityFunc, searchParam = {} }: GenericLayoutProps) => {
-
-
   const [tenis, setTenis] = useState<Tenis[]>([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(parseInt(sessionStorage.getItem('tenisPage') || '1'));
-  const [tenisQuantity, setTenisQuantity] = useState(parseInt(sessionStorage.getItem('tenisQuantity') || '0'));
-  const [searchTerm, setSearchTerm] = useState(sessionStorage.getItem('tenisSearchTerm') || '');
-  
-  const updateSessionStorage = () => {
-    sessionStorage.setItem('tenisPage', page.toString());
-    sessionStorage.setItem('tenisSearchTerm', searchTerm);
-    sessionStorage.setItem('tenisQuantity', tenisQuantity.toString());
-  };
+  const [page, setPage] = useState(1);
+  const [tenisQuantity, setTenisQuantity] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const fetchTenis = async () => {
     setLoading(true);
@@ -38,13 +30,12 @@ export const GenericLayout: React.FC<GenericLayoutProps> = ({ fetchItemsFunc, fe
   };
 
   useEffect(() => {
-    const maxPage = Math.ceil(tenisQuantity / 10);
-    if (page > maxPage) {
-      setPage(1);
-    }
-  
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     fetchTenis();
-    updateSessionStorage();
   }, [page, searchTerm, tenisQuantity]);
 
   const handleSearch = async (search: string) => {

@@ -113,6 +113,9 @@ const Navbar: React.FC = () => {
                 <Link href="/New Balance/New Balance 9060">
                     <DropdownMenuItem>New Balance 9060</DropdownMenuItem>
                 </Link>
+                <Link href="/New Balance/New Balance 550">
+                    <DropdownMenuItem>New Balance 550</DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <Separator className='my-4 mt-8'/>
