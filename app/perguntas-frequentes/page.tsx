@@ -4,7 +4,7 @@ import React from 'react';
 const FAQ: React.FC = () => {
   return (
     <div className='w-full px-4'>
-      <h1 className='font-bold text-xl mb-4 mt-6'>Perguntass frequentes (FAQ)</h1>
+      <h1 className='font-bold text-xl mb-4 mt-6'>Perguntas frequentes (FAQ)</h1>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>Quais são as formas de pagamento?</AccordionTrigger>
@@ -15,7 +15,7 @@ const FAQ: React.FC = () => {
         <AccordionItem value="item-2">
           <AccordionTrigger>Por que é tão barato?</AccordionTrigger>
           <AccordionContent>
-            Nossos produtos, réplicas premium, vêm diretamente de fábricas chinesas. Diferentemente de outras lojas, não superfaturamos os valores dos produtos; cobramos apenas uma pequena taxa de serviço já inclusa nos preços do nosso site.
+            Nossos produtos vêm diretamente de fábricas asiáticas e europeias. Diferentemente de outras lojas, não superfaturamos os valores dos produtos; cobramos apenas uma pequena taxa de serviço já inclusa nos preços do nosso site.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">

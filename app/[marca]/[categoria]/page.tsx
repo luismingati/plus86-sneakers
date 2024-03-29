@@ -1,101 +1,14 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import ProductCard from '@/components/product-card';
-import Link from 'next/link';
-import Search from '@/components/search';
-import { Tenis } from "@prisma/client";
-import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
-import { getOrSearchTenisByCategoria, getTenisQuantity, getTenisQuantityByCategoria } from '@/app/_actions/getTenis';
 
-export default function Marca({ params }: { params: { categoria: string } }) {
-  const [tenis, setTenis] = useState<Tenis[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [tenisQuantity, setTenisQuantity] = useState(0);
-  const [searchTerm, setSearchTerm] = useState('');
+import { getOrSearchTenisByCategoria, getTenisQuantityByCategoria } from '@/app/_actions/getTenis';
+import { GenericLayout } from '@/app/GenericPage';
 
-  const getAllTenisQuantity = async () => {
-    console.log("getAllTenisQuantity function actived");
-    const tenisQuantity = await getTenisQuantityByCategoria(decodeURIComponent(params.categoria));
-    setTenisQuantity(tenisQuantity);
-  }
-  console.log(decodeURIComponent(params.categoria))
+const Categoria = ({ params }: { params: { categoria: string } }) => (
+  <GenericLayout
+    fetchItemsFunc={(page, searchTerm) => getOrSearchTenisByCategoria(page, decodeURIComponent(params.categoria), searchTerm)}
+    fetchQuantityFunc={(searchTerm) => getTenisQuantityByCategoria(decodeURIComponent(params.categoria), searchTerm)}
+    searchParam={{ categoria: decodeURIComponent(params.categoria) }}
+  />
+);
 
-  const getAllTenis = async () => {
-    console.log("getAllTenis function actived");
-    setLoading(true);
-    const allTenis = await getOrSearchTenisByCategoria(page, decodeURIComponent(params.categoria));
-    getAllTenisQuantity();
-    setTenis(allTenis);
-    setLoading(false);
-  };
-
-  const handleSearch = async (search: string) => {
-    setLoading(true);
-    setSearchTerm(search);
-    const searchResults = await getOrSearchTenisByCategoria(1, decodeURIComponent(params.categoria), search.trim());
-    setPage(1);
-    setTenisQuantity(await getTenisQuantityByCategoria(decodeURIComponent(params.categoria), search.trim()));
-    setTenis(searchResults);
-    setLoading(false);
-  };
-
-  const handleNextClick = async () => {
-    const nextPage = page + 1;
-    if (nextPage > Math.ceil(tenisQuantity / 10)) return;
-    setLoading(true);
-    setPage(nextPage);
-    const nextTenis = await getOrSearchTenisByCategoria(nextPage, decodeURIComponent(params.categoria), searchTerm.trim());
-    setTenis(nextTenis);
-    setLoading(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handlePreviousClick = async () => {
-    const previousPage = page - 1;
-    if (previousPage < 1) return;
-    setLoading(true);
-    setPage(previousPage);
-    const previousTenis = await getOrSearchTenisByCategoria(previousPage, decodeURIComponent(params.categoria), searchTerm.trim());
-    setTenis(previousTenis);
-    setLoading(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    getAllTenis();
-  }, []);
-
-  return (
-    <div className="px-4">
-      <Search onSearch={handleSearch} isLoading={loading} />
-      {tenis.length > 0 ? (
-        <div>
-          <div className="mb-6 flex flex-1 flex-col gap-4 items-center md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {tenis.map((tenisItem) => (
-              <Link href={`/details/${tenisItem.id}`} key={tenisItem.id}> 
-                <ProductCard tenis={tenisItem} />
-              </Link>
-            ))}
-          </div>
-          <Pagination>
-            <PaginationContent >
-              <PaginationItem className='cursor-pointer' onClick={handlePreviousClick} >
-                <PaginationPrevious/>
-              </PaginationItem>
-              <PaginationItem className='cursor-pointer' onClick={handleNextClick}>
-                <PaginationNext/>
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </div>
-        ) : (
-          <div className='h-10 mt-10 mb-10 text-center'>
-            <p className='font-bold text-sm'>Nenhum tenis encontrado. Tente outro termo de pesquisa</p>
-          </div>
-        )}
-      <div>        
-      </div>
-    </div>
-  );
-}
+export default Categoria;
