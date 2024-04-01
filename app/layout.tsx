@@ -7,6 +7,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn("min-h-screen bg-background font-sans antialiased",fontSans.variable)}>
         <Analytics />
+        <SpeedInsights />
         <ThemeProvider
         attribute="class"
         defaultTheme="system"

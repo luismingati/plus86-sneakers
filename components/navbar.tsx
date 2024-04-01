@@ -53,6 +53,9 @@ const Navbar: React.FC = () => {
                 <Link href="/nike/Air Force 1">
                   <DropdownMenuItem>Air Force 1</DropdownMenuItem>
                 </Link>
+                <Link href="/nike/Air Jordan 4">
+                  <DropdownMenuItem>Air Jordan 4</DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
@@ -71,6 +74,18 @@ const Navbar: React.FC = () => {
                 <Link href="/adidas/Campus">
                   <DropdownMenuItem>Campus</DropdownMenuItem>
                 </Link>
+                <Link href="/adidas/Yeezy Slide">
+                  <DropdownMenuItem>Yeezy Slide</DropdownMenuItem>
+                </Link>
+                <Link href="/adidas/Samba">
+                  <DropdownMenuItem>Samba</DropdownMenuItem>
+                </Link>
+                <Link href="/adidas/Ultraboost">
+                  <DropdownMenuItem>Ultraboost</DropdownMenuItem>
+                </Link>
+                <Link href="/adidas/Bad Bunny">
+                  <DropdownMenuItem>Bad Bunny</DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
@@ -85,6 +100,9 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link href="/Louis Vuitton/LV trainer">
                   <DropdownMenuItem>LV Trainer</DropdownMenuItem>
+                </Link>
+                <Link href="/Louis Vuitton/LV Skate">
+                  <DropdownMenuItem>LV Skate</DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -115,6 +133,9 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link href="/New Balance/New Balance 550">
                     <DropdownMenuItem>New Balance 550</DropdownMenuItem>
+                </Link>
+                <Link href="/New Balance/New Balance Fuelcell">
+                    <DropdownMenuItem>New Balance Fuelcell</DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
