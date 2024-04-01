@@ -20,6 +20,7 @@ const ProductCard: React.FC<TenisCardProps> = ({tenis}: TenisCardProps) => {
         <div className='relative flex-1'>
           <Badge className='absolute top-2 left-2 z-20'>{tenis.marca}</Badge>
           <Image 
+            unoptimized
             className='rounded-sm aspect-square object-cover z-10'
             src={tenis.thumbnailUrl} 
             alt={tenis.nome || "Tenis estiloso"}

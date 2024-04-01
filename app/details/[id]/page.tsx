@@ -35,6 +35,7 @@ export default function TenisPage({ params }: { params: { id: string } }) {
             {tenis.imagesUrl.map((image, index) => (
               <CarouselItem key={index} className='max-lg:flex max-lg:items-center max-lg:justify-center lg:basis-1/2'>
                   <Image 
+                    unoptimized
                     priority
                     src={image} 
                     alt={tenis.nome} 
