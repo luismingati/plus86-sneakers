@@ -33,7 +33,7 @@ const ProductCard: React.FC<TenisCardProps> = ({tenis}: TenisCardProps) => {
           } 
         </div>
         <h2 className='text-lg mt-1 px-3'>{tenis.nome}</h2>
-        <p className='text-2xl font-bold px-3'>R${((tenis.preco) + (tenis.preco * 0.1) + (25)).toFixed(2)}</p>
+        <p className='text-2xl font-bold px-3'>R${((tenis.preco) + (tenis.preco * 0.1) + (25) + (125) + (10)).toFixed(2)}</p>
       </CardContent>
       <CardFooter className='px-3 py-0 pb-3'>
         <Button className='w-full'>Comprar</Button>

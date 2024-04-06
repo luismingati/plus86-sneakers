@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from './ui/card';
 import Link from 'next/link';
 import { Button } from './ui/button';
@@ -11,13 +11,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Separator } from './ui/separator';
 
 const Navbar: React.FC = () => {
+
   return (
     <Card> 
       <CardContent className='px-8 py-5 flex justify-between items-center'>
         <Link href="/">
           <h1 className='h-[22px] font-bold'>+Plus86 Sneakers</h1>
         </Link>
-        <Sheet>
+        <Sheet >
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
               <MenuIcon size={24}/>
@@ -40,6 +41,9 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link href="/nike/Air Jordan 1">
                   <DropdownMenuItem>Air Jordan 1</DropdownMenuItem>
+                </Link>
+                <Link href="/nike/Air Jordan 1 Mid">
+                  <DropdownMenuItem>Air Jordan 1 Mid</DropdownMenuItem>
                 </Link>
                 <Link href="/nike/Dunk Low">
                   <DropdownMenuItem>Dunk Low</DropdownMenuItem>
@@ -68,22 +72,22 @@ const Navbar: React.FC = () => {
                 <Link href="/Adidas">
                     <DropdownMenuItem>Ver todos</DropdownMenuItem>
                 </Link>
-                <Link href="/adidas/Yeezy 350">
+                <Link href="/Adidas/Yeezy 350">
                   <DropdownMenuItem>Yeezy 350</DropdownMenuItem>
                 </Link>
-                <Link href="/adidas/Campus">
+                <Link href="/Adidas/Campus">
                   <DropdownMenuItem>Campus</DropdownMenuItem>
                 </Link>
-                <Link href="/adidas/Yeezy Slide">
+                <Link href="/Adidas/Yeezy Slide">
                   <DropdownMenuItem>Yeezy Slide</DropdownMenuItem>
                 </Link>
-                <Link href="/adidas/Samba">
+                <Link href="/Adidas/Samba">
                   <DropdownMenuItem>Samba</DropdownMenuItem>
                 </Link>
-                <Link href="/adidas/Ultraboost">
+                <Link href="/Adidas/Ultraboost">
                   <DropdownMenuItem>Ultraboost</DropdownMenuItem>
                 </Link>
-                <Link href="/adidas/Bad Bunny">
+                <Link href="/Adidas/Bad Bunny">
                   <DropdownMenuItem>Bad Bunny</DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>

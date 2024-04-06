@@ -22,12 +22,23 @@ export const GenericLayout: React.FC<GenericLayoutProps> = ({ fetchItemsFunc, fe
 
   const fetchTenis = async () => {
     setLoading(true);
-    const allTenis = await fetchItemsFunc(page, searchTerm, searchParam);
-    const quantity = await fetchQuantityFunc(searchTerm, searchParam);
-    setTenis(allTenis);
-    setTenisQuantity(quantity);
-    setLoading(false);
+    try {
+      const [allTenis, quantity] = await Promise.all([
+        fetchItemsFunc(page, searchTerm, searchParam),
+        fetchQuantityFunc(searchTerm, searchParam)
+      ]);
+      
+      setTenis(allTenis);
+      setTenisQuantity(quantity);
+    } catch (error) {
+      console.error("Erro ao buscar tênis:", error);
+    } finally {
+      setLoading(false);
+    }
+  
+    console.log("tenis fetched");
   };
+  
 
   useEffect(() => {
     window.scrollTo({
@@ -36,7 +47,7 @@ export const GenericLayout: React.FC<GenericLayoutProps> = ({ fetchItemsFunc, fe
       behavior: 'smooth'
     });
     fetchTenis();
-  }, [page, searchTerm, tenisQuantity]);
+  }, [page, searchTerm]);
 
   const handleSearch = async (search: string) => {
     setSearchTerm(search);

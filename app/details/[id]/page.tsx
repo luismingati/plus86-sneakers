@@ -61,11 +61,10 @@ export default function TenisPage({ params }: { params: { id: string } }) {
           <Separator className=' self-center' />
           <h1 className='text-2xl mt-4'>{tenis.nome}</h1>
           <p className='text-xs text-gray-500 mt-1'>Tamanhos disponiveis a verificar.</p>
-          <p className='my-2'>Preço: <span className='font-bold text-xl text-primar mb-4'>R$ {((tenis.preco) + (tenis.preco * 0.1) + (25)).toFixed(2)}</span></p>
+          <p className='my-2'>Preço: <span className='font-bold text-xl text-primar mb-4'>R$ {((tenis.preco) + (tenis.preco * 0.1) + (25) + (125) + (10)).toFixed(2)}</span></p>
           <BuyNow tenisName={tenis.nome} />
-          <div className='flex items-center mt-4 gap-2'>
-            <p className='text-sm flex items-center gap-2'>Disponibilidade:</p>
-            <Badge><CircleCheck size={18} className='mr-1'/> Em estoque</Badge>
+          <div className='flex items-center mt-3 gap-2'>
+            <p className='text-base flex items-center gap-1'>Frete <span className='font-bold text-green-600 text-xl'>grátis</span> para todo Brasil.</p>
           </div>
           <Separator className='my-5'/>
           <div className='flex gap-2 items-center'>

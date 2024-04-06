@@ -13,21 +13,15 @@ const FAQ: React.FC = () => {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger>Por que é tão barato?</AccordionTrigger>
+          <AccordionTrigger>De onde vem?</AccordionTrigger>
           <AccordionContent>
-            Nossos produtos vêm diretamente de fábricas asiáticas e europeias. Diferentemente de outras lojas, não superfaturamos os valores dos produtos; cobramos apenas uma pequena taxa de serviço já inclusa nos preços do nosso site.
+            Nossos produtos vêm diretamente de fábricas asiáticas e europeias. 
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
           <AccordionTrigger>Como funciona?</AccordionTrigger>
           <AccordionContent>
             Para comprar, contate-nos via WhatsApp com o produto desejado. Em média, após 5 dias úteis, o tênis chegará ao nosso armazém. Então, enviaremos fotos reais para sua avaliação antes do envio ao seu endereço.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-4">
-          <AccordionTrigger>Qual é o valor do frete?</AccordionTrigger>
-          <AccordionContent>
-            O valor do frete é baseado no peso do pacote (0-3kg), que será calculado após a aprovação do produto.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-5">
@@ -39,7 +33,7 @@ const FAQ: React.FC = () => {
         <AccordionItem value="item-6">
           <AccordionTrigger>Acompanha caixa?</AccordionTrigger>
           <AccordionContent>
-            Todos os produtos chegam ao armazém com a caixa. No entanto, o envio com ou sem a caixa fica a critério do cliente, visto que ela acrescenta peso adicional ao frete.
+            Todos os produtos chegam ao armazém com a caixa. No entanto, o envio com ou sem a caixa fica a critério do cliente, visto que ela acrescenta peso adicional ao produto.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-7">
@@ -57,7 +51,7 @@ const FAQ: React.FC = () => {
         <AccordionItem value="item-9">
           <AccordionTrigger>O pacote foi taxado, vocês pagam?</AccordionTrigger>
           <AccordionContent>
-            O valor pago inicialmente por nossos serviços não abrange as taxas de importação cobradas pelos Correios, que giram em torno de R$10,00 por par de tênis.
+            Basta efetuar o pagamento da taxa, enviar o comprovante e reembolsaremos o valor pago imediatamente.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
